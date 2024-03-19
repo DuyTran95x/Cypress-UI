@@ -1,0 +1,23 @@
+{
+  "name": "automationui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "open": "cypress open",
+    "test-chrome": "npx cypress run --browser chrome --headless",
+    "test-firefox": "npx cypress run --browser firefox --headless"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.6.3",
+    "cypress-mochawesome-reporter": "^3.8.1",
+    "cypress-xpath": "^2.0.1",
+    "prettier": "3.2.4"
+  },
+  "dependencies": {
+    "dotenv": "16.3.1"
+  }
+}
