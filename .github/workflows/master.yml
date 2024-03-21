@@ -5,8 +5,9 @@ on:
       - '!README.md'
       - '**.cy.js'
     branches:
-     - master
-  workflow_dispatch:   
+      - master
+  schedule:
+    - cron: '/5 * * * *'      
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
