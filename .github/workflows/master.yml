@@ -1,7 +1,12 @@
 name: End-to-end Tests
 on:
-  schedule:
-      - cron: '30 17 * * *'
+  push:
+    path:
+      - '!README.md'
+      - '**.cy.js'
+   branches:
+     - master
+  workflow_dispatch:   
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
