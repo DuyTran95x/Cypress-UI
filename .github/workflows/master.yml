@@ -1,5 +1,7 @@
 name: End-to-end Tests
 on:
+ schedule:
+    - cron: "* 6 * * *"
  push:
    branches:
      - master
@@ -15,4 +17,5 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           build: yarn 
-          start: yarn open 
+          start: yarn open
+          browser: chrome
