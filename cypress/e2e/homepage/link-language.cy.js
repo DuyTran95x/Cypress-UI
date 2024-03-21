@@ -13,7 +13,7 @@ describe('Navigation - Check Home Languages URL', () => {
     _.each(Languages, (link) => {
       it(`Should check ${link} URL`, () => {
         const home_meta_description = {
-          '/vi': 'Sòng bạc trực tuyến tốt nhất.',
+          '/vi': 'Sòng bạc trực tuyến tốt nhất',
           '/en':
             'The best online casino. Play live casino, slot games, sports betting and online 4D lottery with us! Register now!',
           '/zh-CN': '最好的在线赌场.',
