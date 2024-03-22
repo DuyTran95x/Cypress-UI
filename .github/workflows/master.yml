@@ -21,3 +21,5 @@ jobs:
           build: yarn 
           start: yarn open
           browser: chrome
+          config-file: cypress.config.js
+          headed: true

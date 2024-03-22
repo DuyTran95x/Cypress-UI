@@ -3,7 +3,7 @@ This is the cypress for e2e testing project.
 ## Project setup
 
 - `Nodejs version`: v20.11.1
-- `NPM version`: v10.2.4
+- `NPM version`: v10.5.0
 - `Yarn version`: v1.22.22
 
 ```bash
