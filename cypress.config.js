@@ -1,8 +1,9 @@
-const { defineConfig } = require("cypress");
-require("dotenv").config();
+const { defineConfig } = require('cypress');
+
 module.exports = defineConfig({
-  reporter: "cypress-mochawesome-reporter",
+  reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
+    reportDir: 'docs',
     charts: true,
     reportPageTitle: "Casino",
     embeddedScreenshots: true,
@@ -13,21 +14,29 @@ module.exports = defineConfig({
     html: true,
     json: true,
   },
-  video: true,
-  experimentalMemoryManagement: true,
-  numTestsKeptInMemory: 0,
-  screenshotsFolder: "cypress/images",
-  env: {
-    ...process.env,
-  },
   e2e: {
-    viewportWidth: 1536,
-    viewportHeight: 960,
-    defaultCommandTimeout: 10000,
-    excludeSpecPattern: ['cypress/e2e/**/**.exclude.cy.js'],
+    experimentalMemoryManagement: true,
+    numTestsKeptInMemory: 0,
+    defaultCommandTimeout: 20000,
+    trashAssetsBeforeRuns: true,
+    pageLoadTimeout: 20000,
+    screenshotOnRunFailure: true,
+    testIsolation: false,
     setupNodeEvents(on, config) {
-      // implement node event listeners here
-      require("cypress-mochawesome-reporter/plugin")(on, config);
-    },
-  },
+      on('before:browser:launch', (browser = {}, launchOptions) => {
+        if (browser.family === 'chromium') {
+          launchOptions.args.push('--mute-audio');
+        }
+        return launchOptions;
+      });
+
+      require('cypress-mochawesome-reporter/plugin')(on);
+
+      return {
+        ...config,
+        browsers: config.browsers.filter((b) => b.name === 'chrome'),
+        excludeSpecPattern: ['cypress/e2e/**/**.exclude.cy.js'],
+      };
+    }
+  }
 });

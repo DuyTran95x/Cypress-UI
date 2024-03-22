@@ -23,3 +23,9 @@ jobs:
           browser: chrome
           config-file: cypress.config.js
           headed: true
+      - name: Upload artifact to enable deployment
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-report
+          path: docs
