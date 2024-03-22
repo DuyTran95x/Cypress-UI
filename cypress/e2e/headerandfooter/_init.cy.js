@@ -4,7 +4,7 @@ let header = new Header();
 let tokenGuest = [];
 let tokenLogin = [];
 
-describe('Verify Header', () => {
+describe('Support Verify Header And Footer', () => {
     
     beforeEach(() => {
         cy.viewport('iphone-8');
@@ -15,7 +15,7 @@ describe('Verify Header', () => {
         cy.wait(5000);
     })
 
-    it('Guest user join site', () => {
+    it('Guest user join site support', () => {
         header.imgAvata.should('not.exist');
         header.selectToken.click();
         cy.get('div.shadow-md button')
@@ -26,7 +26,7 @@ describe('Verify Header', () => {
             }) 
     })
 
-    it('Login user join site', () => {
+    it('Login user join site support', () => {
         cy.login();
         cy.wait(5000);
         cy.get('body').invoke('show').click({ force: true });

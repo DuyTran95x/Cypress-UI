@@ -2,7 +2,7 @@ import { uncaughtAllErrors } from "../../support/exception/uncaughtErrorsCypress
 import { Footer } from "../../pages/headerandfooter/elementsfooter.cy";
 
 let footer = new Footer();
-describe('Verify Header', () => {
+describe('Verify Footer', () => {
     
     beforeEach(() => {
         cy.viewport('iphone-8');
