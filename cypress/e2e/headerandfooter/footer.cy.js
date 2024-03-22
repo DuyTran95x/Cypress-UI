@@ -1,10 +1,7 @@
 import { uncaughtAllErrors } from "../../support/exception/uncaughtErrorsCypress"
-import { Header } from "../../pages/headerandfooter/elementsheader.cy";
-import tokenGuestUser from "../../fixtures/navigation/token.json"
-import tokenLoginUser from "../../fixtures/navigation/tokenuser.json"
-let header = new Header();
-let tokenGuest = [];
-let tokenLogin = [];
+import { Footer } from "../../pages/headerandfooter/elementsfooter.cy";
+
+let footer = new Footer();
 describe('Verify Header', () => {
     
     beforeEach(() => {
@@ -14,32 +11,26 @@ describe('Verify Header', () => {
         cy.wait(5000);
         cy.get('body').invoke('show').click({ force: true });
         cy.wait(5000);
+        cy.get('footer').scrollIntoView();
     })
 
-    it('Guest user join site', () => {
-        header.imgAvata.should('not.exist');
-        header.selectToken.click();
-        cy.get('div.shadow-md button')
-            .each(($li) => tokenGuest.push($li.text().trim()))
-            .then(() => {
-                cy.log(JSON.stringify(tokenGuest))
-                cy.wrap(tokenGuest).should('deep.equal', tokenGuestUser) 
-            })
+    it('Footer -> Casino Section', () => {
+        footer.itemHotGames.click()
+        cy.url().should('include','/en/play/top-game');
+        footer.itemSlots.scrollIntoView().click();
+        cy.url().should('include','/en/play/slots');
+        footer.itemBaccarat.scrollIntoView().click();
+        cy.url().should('include','/en/play/baccarat');
+        footer.itemCryptoGames.scrollIntoView().click();
+        cy.url().should('include','/en/play/crypto-game');
+        footer.itemLiveCasino.scrollIntoView().click();
+        cy.url().should('include','/en/play/live-casino');
+        footer.itemTableGames.scrollIntoView().click();
+        cy.url().should('include','/en/play/board-game');
+        footer.itemBlackjack.scrollIntoView().click();
+        cy.url().should('include','/en/play/blackjack');
+        footer.itemRoulette.scrollIntoView().click();
+        cy.url().should('include','/en/play/roulette');
     })
 
-    it('Login user join site', () => {
-        cy.login();
-        cy.wait(5000);
-        cy.get('body').invoke('show').click({ force: true });
-        cy.wait(5000);
-        header.imgAvata.should('be.visible');
-        header.selectToken.click();
-        cy.get('div.shadow-md button')
-            .each(($li) => tokenLogin.push($li.text().trim()))
-            .then(() => {
-                cy.log(JSON.stringify(tokenLogin))
-                cy.wrap(tokenLogin).should('deep.equal', tokenLoginUser)
-            })
-         
-    })
 })
